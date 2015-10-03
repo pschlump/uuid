@@ -1,8 +1,9 @@
 package uuid_test
 
 import (
-	"./uuid" // "github.com/nu7hatch/gouuid"
 	"fmt"
+
+	"github.com/pschlump/uuid"
 )
 
 func ExampleNewV4() {
