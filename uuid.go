@@ -81,8 +81,7 @@ func Parse(b []byte) (u *UUID, err error) {
 	return
 }
 
-// Generate a UUID based on the MD5 hash of a namespace identifier
-// and a name.
+// NewV3 will generate a UUID based on the MD5 hash of a namespace identifier and a name.
 func NewV3(ns *UUID, name []byte) (u *UUID, err error) {
 	if ns == nil {
 		err = errors.New("Invalid namespace UUID")
@@ -96,7 +95,7 @@ func NewV3(ns *UUID, name []byte) (u *UUID, err error) {
 	return
 }
 
-// Generate a random UUID.
+// NewV4 will generate a random UUID in the version 4 format.
 func NewV4() (u *UUID, err error) {
 	u = new(UUID)
 	// Set all bits to randomly (or pseudo-randomly) chosen values.
@@ -109,8 +108,7 @@ func NewV4() (u *UUID, err error) {
 	return
 }
 
-// Generate a UUID based on the SHA-1 hash of a namespace identifier
-// and a name.
+// NewV5 will generate a UUID based on the SHA-1 hash of a namespace identifier and a name.
 func NewV5(ns *UUID, name []byte) (u *UUID, err error) {
 	u = new(UUID)
 	// Set all bits to truncated SHA1 hash generated from namespace
@@ -121,16 +119,14 @@ func NewV5(ns *UUID, name []byte) (u *UUID, err error) {
 	return
 }
 
-// Generate a MD5 hash of a namespace and a name, and copy it to the
-// UUID slice.
+// Generate a MD5 hash of a namespace and a name, and copy it to the UUID slice.
 func (u *UUID) setBytesFromHash(hash hash.Hash, ns, name []byte) {
 	hash.Write(ns[:])
 	hash.Write(name)
 	copy(u[:], hash.Sum([]byte{})[:16])
 }
 
-// Set the two most significant bits (bits 6 and 7) of the
-// clock_seq_hi_and_reserved to zero and one, respectively.
+// Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.
 func (u *UUID) setVariant(v byte) {
 	switch v {
 	case ReservedNCS:
@@ -142,8 +138,7 @@ func (u *UUID) setVariant(v byte) {
 	}
 }
 
-// Variant returns the UUID Variant, which determines the internal
-// layout of the UUID. This will be one of the constants: RESERVED_NCS,
+// Variant returns the UUID Variant, which determines the internal layout of the UUID. This will be one of the constants: RESERVED_NCS,
 // RFC_4122, RESERVED_MICROSOFT, RESERVED_FUTURE.
 func (u *UUID) Variant() byte {
 	if u[8]&ReservedNCS == ReservedNCS {
@@ -156,14 +151,12 @@ func (u *UUID) Variant() byte {
 	return ReservedFuture
 }
 
-// Set the four most significant bits (bits 12 through 15) of the
-// time_hi_and_version field to the 4-bit version number.
+// Set the four most significant bits (bits 12 through 15) of the time_hi_and_version field to the 4-bit version number.
 func (u *UUID) setVersion(v byte) {
 	u[6] = (u[6] & 0xF) | (v << 4)
 }
 
-// Version returns a version number of the algorithm used to
-// generate the UUID sequence.
+// Version returns a version number of the algorithm used to generate the UUID sequence.
 func (u *UUID) Version() uint {
 	return uint(u[6] >> 4)
 }

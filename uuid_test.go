@@ -49,7 +49,7 @@ func TestParseString(t *testing.T) {
 func TestNewV3(t *testing.T) {
 	u, err := NewV3(NamespaceURL, []byte("golang.org"))
 	if err != nil {
-		t.Errorf("Expected to generate UUID without problems, error thrown: %d", err.Error())
+		t.Errorf("Expected to generate UUID without problems, error thrown: %s", err.Error())
 		return
 	}
 	if u.Version() != 3 {
@@ -97,7 +97,7 @@ func TestNewV4(t *testing.T) {
 func TestNewV5(t *testing.T) {
 	u, err := NewV5(NamespaceURL, []byte("golang.org"))
 	if err != nil {
-		t.Errorf("Expected to generate UUID without problems, error thrown: %d", err.Error())
+		t.Errorf("Expected to generate UUID without problems, error thrown: %s", err.Error())
 		return
 	}
 	if u.Version() != 5 {
