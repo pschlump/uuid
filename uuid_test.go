@@ -123,3 +123,11 @@ func TestNewV5(t *testing.T) {
 		t.Errorf("Expected UUIDs generated of the same namespace and different names to be different")
 	}
 }
+
+func TestIsUUID(t *testing.T) {
+	base, _ := NewV4()
+	u := IsUUID(base.String())
+	if !u {
+		t.Errorf("Expected UUID")
+	}
+}
