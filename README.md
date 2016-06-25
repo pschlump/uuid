@@ -3,6 +3,8 @@
 
 [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/pschlump/Go-FTL/master/LICENSE)
 
+Version 1.0.0
+
 This is a copy of github.com/nu7hatch/gouuid with some modifications to improve
 performance.  All credit for the original should go to the original author.
 
