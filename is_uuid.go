@@ -3,7 +3,7 @@
 // and 5 UUIDs as specified in RFC 4122.
 //
 // Copyright (C) 2011 by Krzysztof Kowalik <chris@nu7hat.ch>
-// Copyright (C) 2012-2015 by Philip Schlump - MIT License
+// Copyright (C) 2012-2019 by Philip Schlump - MIT License
 
 package uuid
 
